@@ -1,0 +1,43 @@
+.formSection {
+  .formContent {
+    background-color: var(--card-color);
+    width: 40%;
+    border-radius: 8px;
+  }
+  .signUpTitle {
+    color: var(--text-primary-color);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .termsTextStyles {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--text-secondary-color);
+
+    &--one {
+      color: var(--accent-color);
+      text-decoration-line: underline;
+    }
+  }
+
+  .signUpTextStyleOne {
+    color: var(--accent-color);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .signUpTextStyleTwo {
+    color: var(--text-secondary-color);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

@@ -18,7 +18,8 @@ const Routes: React.FC = () => {
       <ReactRoutes>
         <Route path='/' element={<MainLayout />}>
           {/* Public routes */}
-          <Route path='login' element={<SignIn />} />
+          <Route index element={<SignIn />} />
+          <Route index path='login' element={<SignIn />} />
           <Route path='register' element={<SignUp />} />
           <Route path='*' element={<PageNotFound />} />
 

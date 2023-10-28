@@ -11,6 +11,8 @@ import SignIn from './pages/sign-in/sign-in';
 import SignUp from './pages/sign-up/sign-up';
 import RequireAuth from './components/require-auth/RequireAuth';
 import ProductHome from './components/product-home/ProductHome';
+import AuthLayout from './layouts/AuthLayout';
+import Dashboard from './pages/dashboard/dashboard';
 
 const Routes: React.FC = () => {
   return (
@@ -25,16 +27,10 @@ const Routes: React.FC = () => {
 
           {/* Private routes */}
           <Route element={<RequireAuth />}>
-            <Route
-              path='welcome'
-              element={
-                <>
-                  <h1> Hello after login</h1>
-                  <Link to='/products'> go to products</Link>
-                </>
-              }
-            />
-            <Route path='products' element={<ProductHome />} />
+            <Route path='/user' element={<AuthLayout />}>
+              <Route path='welcome' element={<Dashboard />} />
+              <Route path='products' element={<ProductHome />} />
+            </Route>
           </Route>
         </Route>
       </ReactRoutes>

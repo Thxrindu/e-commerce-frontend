@@ -73,25 +73,13 @@ const AppInput = (props: IProps) => {
                 : ``
             }`}
           >
-            {rest.type === 'number' ? (
-              <input
-                {...register}
-                placeholder={placeholder}
-                type={rest.type}
-                min='0'
-                onKeyDown={(e) =>
-                  ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-                }
-              />
-            ) : (
-              <input
-                {...register}
-                placeholder={placeholder}
-                type={rest.type}
-                disabled={disabled}
-                defaultValue={value || ''}
-              />
-            )}
+            <input
+              {...register}
+              placeholder={placeholder}
+              type={rest.type}
+              disabled={disabled}
+              defaultValue={value || ''}
+            />
 
             {props.icon && (
               <div className={`icon`} onClick={onIconClick}>

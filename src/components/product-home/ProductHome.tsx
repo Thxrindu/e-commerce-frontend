@@ -23,7 +23,7 @@ const ProductHome = () => {
           })}
         </>
       )}
-      <Link to='/welcome'> back to welcome</Link>
+      <Link to='/user/welcome'> back to welcome</Link>
     </div>
   );
 };

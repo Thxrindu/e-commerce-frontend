@@ -58,7 +58,7 @@ const SignIn = () => {
         password: data.password,
       }).unwrap();
       dispatch(setCredentials({ ...userData, user: data.email }));
-      navigate('/welcome');
+      navigate('/user/welcome');
       showSuccessToast('Login success.', 'loginError');
     } catch (err) {
       showErrorToast(
@@ -156,7 +156,7 @@ const SignIn = () => {
                   </span>
                   <span
                     className={`${styles.signInTextStyleOne} cursor-pointer ms-1`}
-                    onClick={() => navigate('/register')}
+                    onClick={() => {}}
                   >
                     Reset it
                   </span>

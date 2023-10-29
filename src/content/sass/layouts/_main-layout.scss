@@ -1,0 +1,11 @@
+.main-layout {
+  background-color: var(--background-secondary-color);
+  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
+  &__body {
+    min-height: calc(100vh - 75px);
+    height: 100%;
+    padding-top: 50px;
+  }
+}

@@ -1,0 +1,19 @@
+.categorySelector {
+  background-color: var(--accent-color);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.navProfileFont {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--background-color);
+}
+
+.customDropdownList {
+  min-width: 200px;
+  width: auto;
+  top: 20px;
+  left: -10px;
+}

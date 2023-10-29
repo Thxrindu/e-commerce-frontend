@@ -1,0 +1,48 @@
+.formSection {
+  padding-top: 75px;
+  .formContent {
+    background-color: var(--card-color);
+    width: 40%;
+    border-radius: 8px;
+  }
+
+  .signInTitle {
+    color: var(--text-primary-color);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .signInSubTitle {
+    color: var(--text-primary-color);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .signInTextStyleOne {
+    color: var(--accent-color);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .signInTextStyleTwo {
+    color: var(--text-secondary-color);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .guestSection {
+    background-color: rgb(222, 222, 222);
+    border-radius: 0 0 8px 8px;
+    height: 30px;
+  }
+}

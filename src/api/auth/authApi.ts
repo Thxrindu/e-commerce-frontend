@@ -5,6 +5,7 @@ import { RootState } from '../../types';
 interface RefreshData {
   user: any;
   accessToken: string;
+  refreshToken: string;
 }
 
 const baseQuery = fetchBaseQuery({
@@ -21,11 +22,9 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  console.log('result', result);
 
   if (result?.error && result.error.status === 403) {
-    console.log('Sending refresh token');
-    const token = api.getState().auth.token;
+    const token = api.getState().auth.refreshToken;
     const refreshResult = (await baseQuery(
       {
         url: '/auth/refresh-token',
@@ -37,7 +36,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     )) as {
       data?: RefreshData;
     };
-    console.log(refreshResult);
     if (refreshResult?.data) {
       const user = api.getState().auth.user;
       //store the new token

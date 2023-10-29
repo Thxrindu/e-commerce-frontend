@@ -21,7 +21,6 @@ const Routes: React.FC = () => {
           {/* Public routes */}
           <Route index element={<Dashboard />} />
           <Route index path='dashboard' element={<Dashboard />} />
-          <Route index path='products' element={<ProductHome />} />
           <Route path='login' element={<SignIn />} />
           <Route path='register' element={<SignUp />} />
           <Route path='*' element={<PageNotFound />} />

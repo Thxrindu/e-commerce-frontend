@@ -2,12 +2,15 @@ import styles from './header.module.scss';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsChevronDown } from 'react-icons/bs';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { selectCurrentToken } from '../../features/auth/authSlice';
 
 interface IProps {
   display: boolean;
 }
 
 const Header = (props: IProps) => {
+  const token = useSelector(selectCurrentToken);
   const { display } = props;
   const navigate = useNavigate();
 
@@ -29,25 +32,30 @@ const Header = (props: IProps) => {
                 </Col>
                 <Col className='col-6 d-flex justify-content-end text-nowrap'>
                   <Row>
-                    <Col className={`${styles.navbarContainer__heading}`}>
-                      Track my order <BsChevronDown />
-                    </Col>
-                    <Col
-                      className={`${styles.navbarContainer__heading} cursor-pointer`}
-                      onClick={() => {
-                        navigate('/login');
-                      }}
-                    >
-                      Log in
-                    </Col>
-                    <Col
-                      className={`${styles.navbarContainer__heading} cursor-pointer`}
-                      onClick={() => {
-                        navigate('/register');
-                      }}
-                    >
-                      Sign up
-                    </Col>
+                    {token ? (
+                      <Col className={`${styles.navbarContainer__heading}`}>
+                        Track my order <BsChevronDown />
+                      </Col>
+                    ) : (
+                      <>
+                        <Col
+                          className={`${styles.navbarContainer__heading} cursor-pointer`}
+                          onClick={() => {
+                            navigate('/login');
+                          }}
+                        >
+                          Log in
+                        </Col>
+                        <Col
+                          className={`${styles.navbarContainer__heading} cursor-pointer`}
+                          onClick={() => {
+                            navigate('/register');
+                          }}
+                        >
+                          Sign up
+                        </Col>
+                      </>
+                    )}
                   </Row>
                 </Col>
               </Row>

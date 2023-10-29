@@ -7,6 +7,7 @@ export interface IListItem {
   itemName: string;
   id: string;
   icon: IconType;
+  path?: string;
 }
 
 interface IProps {
@@ -21,7 +22,7 @@ const CategoryList = (props: IProps) => {
         return (
           <Row
             key={item.id}
-            onClick={() => props.onClick && props.onClick(item.itemName)}
+            onClick={() => props.onClick && props.onClick(item.path)}
             className='cursor-pointer'
           >
             <Col className='col-1 ps-4 pt-1 pe-0'>

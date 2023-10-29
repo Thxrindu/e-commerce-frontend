@@ -14,9 +14,9 @@ const SubHeader = (props: IProps) => {
   const { subHeaders } = props;
   return (
     <Row>
-      {subHeaders.map((subHeader) => {
+      {subHeaders.map((subHeader, index) => {
         return (
-          <Col className={`${styles.subHeader} text-nowrap`}>
+          <Col className={`${styles.subHeader} text-nowrap`} key={index}>
             {subHeader.subHeaderName}
           </Col>
         );

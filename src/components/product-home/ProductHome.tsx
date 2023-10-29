@@ -4,10 +4,10 @@ import { useGetProductsQuery } from '../../features/products/productApiSlice';
 const ProductHome = () => {
   const {
     data: products,
-    isLoading,
+    // isLoading,
     isSuccess,
-    isError,
-    error,
+    // isError,
+    // error,
   } = useGetProductsQuery();
 
   return (
@@ -23,7 +23,7 @@ const ProductHome = () => {
           })}
         </>
       )}
-      <Link to='/welcome'> back to welcome</Link>
+      <Link to='/user/welcome'> back to welcome</Link>
     </div>
   );
 };

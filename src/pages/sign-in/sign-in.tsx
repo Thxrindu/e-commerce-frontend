@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import styles from './sign-in.module.scss';
 import AppInput from '../../ui-components/app-input/app-input';
 import AppButton from '../../ui-components/app-button/app-button';
@@ -19,8 +18,6 @@ type SignInFormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  // const userRef = useRef<HTMLInputElement | null>(null);
-  // const errorRef = useRef();
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -33,22 +30,6 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  // useEffect(() => {
-  //   if (loginError) {
-  //     toast.error('Email or the password is invalid. Please try again with valid information.', {
-  //       toastId: 'loginError',
-  //     });
-  //   }
-  // }, [loginError]);
-
-  // const { from } = location.state || {
-  //   from: { pathname: `${isAuthorizedAdmin ? '/admin/courses' : '/student/courses'}`, search: location.search },
-  // };
-
-  // if (isAuthenticated) {
-  //   return <Navigate to={from} replace />;
-  // }
-
   const onSubmit: SubmitHandler<SignInFormValues> = async (
     data: SignInFormValues
   ) => {
@@ -58,7 +39,7 @@ const SignIn = () => {
         password: data.password,
       }).unwrap();
       dispatch(setCredentials({ ...userData, user: data.email }));
-      navigate('/welcome');
+      navigate('/user/welcome');
       showSuccessToast('Login success.', 'loginError');
     } catch (err) {
       showErrorToast(
@@ -73,95 +54,109 @@ const SignIn = () => {
       <Container className='py-lg-5 py-md-3'>
         <Row className='align-items-center justify-content-evenly'>
           <Col
-            className={` ${styles.formSection} d-flex align-items-center justify-content-center`}
+            className={` ${styles.formSection} d-flex align-items-center justify-content-center flex-column`}
           >
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className={`${styles.formContent} px-5 py-4`}
+              className={`${styles.formContent}`}
             >
-              <Row>
-                <Col className={`${styles.signInTitle} text-center pb-1`}>
-                  OrelBuy
-                </Col>
-              </Row>
-              <Row>
-                <Col className={`${styles.signInSubTitle} text-center pb-3`}>
-                  Hello, Welcome to Orelbuy
-                </Col>
-              </Row>
-              <Row>
-                <Col className='mb-4'>
-                  <AppInput
-                    id='email'
-                    placeholder={'email@mail.com'}
-                    name='email'
-                    label='Email'
-                    register={register('email', {
-                      required: 'Email is required',
-                      // pattern: {
-                      // value: emailRegex,
-                      // message: 'Please enter a valid email',
-                      // },
-                    })}
-                    errors={errors}
-                  />
-                </Col>
-              </Row>
-              <Row className='align-items-center'>
-                <Col className='mb-4'>
-                  <AppInput
-                    id='password'
-                    name='password'
-                    label='Password'
-                    placeholder={'Password'}
-                    type={showPassword ? 'text' : 'password'}
-                    icon={!showPassword ? BsEyeSlash : BsEye}
-                    onIconClick={() => setShowPassword(!showPassword)}
-                    register={register('password', {
-                      required: 'Password is required',
-                    })}
-                    errors={errors}
-                  />
-                </Col>
-              </Row>
+              <div className={` px-5 pt-4`}>
+                <Row>
+                  <Col className={`${styles.signInTitle} text-center pb-1`}>
+                    OrelBuy
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className={`${styles.signInSubTitle} text-center pb-3`}>
+                    Hello, Welcome to Orelbuy
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className='mb-4'>
+                    <AppInput
+                      id='email'
+                      placeholder={'email@mail.com'}
+                      name='email'
+                      label='Email'
+                      register={register('email', {
+                        required: 'Email is required',
+                        // pattern: {
+                        // value: emailRegex,
+                        // message: 'Please enter a valid email',
+                        // },
+                      })}
+                      errors={errors}
+                    />
+                  </Col>
+                </Row>
+                <Row className='align-items-center'>
+                  <Col className='mb-4'>
+                    <AppInput
+                      id='password'
+                      name='password'
+                      label='Password'
+                      placeholder={'Password'}
+                      type={showPassword ? 'text' : 'password'}
+                      icon={!showPassword ? BsEyeSlash : BsEye}
+                      onIconClick={() => setShowPassword(!showPassword)}
+                      register={register('password', {
+                        required: 'Password is required',
+                      })}
+                      errors={errors}
+                    />
+                  </Col>
+                </Row>
 
-              <Row>
-                <Col className='mb-4'>
-                  <AppButton
-                    type='submit'
-                    text={'Log In'}
-                    loading={isLoading}
-                  />
-                </Col>
-              </Row>
+                <Row>
+                  <Col className='mb-4'>
+                    <AppButton
+                      type='submit'
+                      text={'Log In'}
+                      loading={isLoading}
+                    />
+                  </Col>
+                </Row>
 
-              <Row className='justify-content-center text-center'>
-                <Col className='col-auto'>
-                  <span className={`${styles.signInTextStyleTwo}`}>
-                    Don&apos;t have an account?
-                  </span>
-                  <span
-                    className={`${styles.signInTextStyleOne} cursor-pointer ms-1`}
-                    onClick={() => navigate('/register')}
+                <Row className='justify-content-center text-center'>
+                  <Col className='col-auto'>
+                    <span className={`${styles.signInTextStyleTwo}`}>
+                      Don&apos;t have an account?
+                    </span>
+                    <span
+                      className={`${styles.signInTextStyleOne} cursor-pointer ms-1`}
+                      onClick={() => navigate('/register')}
+                    >
+                      Sign Up
+                    </span>
+                  </Col>
+                </Row>
+
+                <Row className='justify-content-center text-center'>
+                  <Col className='col-auto'>
+                    <span className={`${styles.signInTextStyleTwo}`}>
+                      Forgot your password?
+                    </span>
+                    <span
+                      className={`${styles.signInTextStyleOne} cursor-pointer ms-1`}
+                      onClick={() => {}}
+                    >
+                      Reset it
+                    </span>
+                  </Col>
+                </Row>
+              </div>
+              <div>
+                <Row className={`mt-3`}>
+                  <Col
+                    className={`${styles.guestSection} mx-2`}
+                    onClick={() => {
+                      navigate('/dashboard');
+                    }}
                   >
-                    Sign Up
-                  </span>
-                </Col>
-              </Row>
-
-              <Row className='justify-content-center text-center'>
-                <Col className='col-auto'>
-                  <span className={`${styles.signInTextStyleTwo}`}>
-                    Forgot your password?
-                  </span>
-                  <span
-                    className={`${styles.signInTextStyleOne} cursor-pointer ms-1`}
-                    onClick={() => navigate('/register')}
-                  >
-                    Reset it
-                  </span>
-                </Col>
-              </Row>
+                    Continue as guest
+                  </Col>
+                </Row>
+              </div>
             </form>
           </Col>
         </Row>

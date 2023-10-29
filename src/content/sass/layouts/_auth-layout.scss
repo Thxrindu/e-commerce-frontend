@@ -1,4 +1,4 @@
-.main-layout {
+.auth-layout {
   background-color: var(--background-color);
   min-height: 100vh;
   height: 100vh;
@@ -6,6 +6,5 @@
   &__body {
     min-height: calc(100vh - 75px);
     height: 100%;
-    padding-top: 50px;
   }
 }

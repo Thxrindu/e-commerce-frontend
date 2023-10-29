@@ -19,15 +19,16 @@ const Routes: React.FC = () => {
       <ReactRoutes>
         <Route path='/' element={<MainLayout />}>
           {/* Public routes */}
-          <Route index element={<SignIn />} />
-          <Route index path='login' element={<SignIn />} />
+          <Route index element={<Dashboard />} />
+          <Route index path='dashboard' element={<Dashboard />} />
+          <Route index path='products' element={<ProductHome />} />
+          <Route path='login' element={<SignIn />} />
           <Route path='register' element={<SignUp />} />
           <Route path='*' element={<PageNotFound />} />
 
           {/* Private routes */}
           <Route element={<RequireAuth />}>
             <Route path='/user' element={<AuthLayout />}>
-              <Route path='welcome' element={<Dashboard />} />
               <Route path='products' element={<ProductHome />} />
             </Route>
           </Route>

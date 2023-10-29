@@ -1,0 +1,9 @@
+.mainCard {
+  background: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &__text {
+    color: var(--text-primary-color);
+  }
+}

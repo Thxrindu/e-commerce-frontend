@@ -39,7 +39,7 @@ const SignIn = () => {
         password: data.password,
       }).unwrap();
       dispatch(setCredentials({ ...userData, user: data.email }));
-      navigate('/user/welcome');
+      navigate('/user/products');
       showSuccessToast('Login success.', 'loginError');
     } catch (err) {
       showErrorToast(

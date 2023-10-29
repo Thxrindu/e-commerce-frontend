@@ -9,7 +9,7 @@ const MainLayout = () => {
   const [navBarVisibility, setNavBarVisibility] = useState(true);
 
   useEffect(() => {
-    if (location.pathname == '/login' || location.pathname == '/register') {
+    if (location.pathname === '/login' || location.pathname === '/register') {
       setNavBarVisibility(false);
     } else {
       setNavBarVisibility(true);

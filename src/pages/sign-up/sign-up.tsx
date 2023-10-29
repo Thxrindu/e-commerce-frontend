@@ -1,12 +1,14 @@
 import { emailRegex } from '../../util/regex';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './sign-up.module.scss';
 import AppInput from '../../ui-components/app-input/app-input';
 import AppButton from '../../ui-components/app-button/app-button';
+import { useRegisterUserMutation } from '../../features/auth/authApiSlice';
+import { showErrorToast, showSuccessToast } from '../../util/toast';
 
 type SignUpFormValues = {
   name: string;
@@ -22,6 +24,8 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
 
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+
   const {
     handleSubmit,
     register,
@@ -32,10 +36,23 @@ const SignUp = () => {
   const password = useRef({});
   password.current = watch('password', '');
 
-  const onSubmit: SubmitHandler<SignUpFormValues> = (
+  const onSubmit: SubmitHandler<SignUpFormValues> = async (
     data: SignUpFormValues
   ) => {
-    console.log(data);
+    try {
+      await registerUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }).unwrap();
+      navigate('/login');
+      showSuccessToast('Registration success.', 'registrationError');
+    } catch (err) {
+      showErrorToast(
+        'Registration failed. Please try again .',
+        'registrationError'
+      );
+    }
   };
 
   return (
@@ -144,7 +161,11 @@ const SignUp = () => {
 
               <Row>
                 <Col className='mb-4'>
-                  <AppButton type='submit' text={'Sign Up'} />
+                  <AppButton
+                    type='submit'
+                    text={'Sign Up'}
+                    loading={isLoading}
+                  />
                 </Col>
               </Row>
 

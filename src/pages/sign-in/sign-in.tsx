@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import styles from './sign-in.module.scss';
 import AppInput from '../../ui-components/app-input/app-input';
 import AppButton from '../../ui-components/app-button/app-button';
@@ -19,8 +18,6 @@ type SignInFormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  // const userRef = useRef<HTMLInputElement | null>(null);
-  // const errorRef = useRef();
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);

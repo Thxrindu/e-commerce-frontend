@@ -4,10 +4,10 @@ import { useGetProductsQuery } from '../../features/products/productApiSlice';
 const ProductHome = () => {
   const {
     data: products,
-    isLoading,
+    // isLoading,
     isSuccess,
-    isError,
-    error,
+    // isError,
+    // error,
   } = useGetProductsQuery();
 
   return (

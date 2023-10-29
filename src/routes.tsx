@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes as ReactRoutes,
-  Link,
 } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import PageNotFound from './error/page-not-found';
